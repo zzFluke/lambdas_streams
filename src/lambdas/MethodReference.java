@@ -48,7 +48,7 @@ public class MethodReference
     public static void main(String[] args) throws Exception
     {
         // Constructor reference
-        createURL("http://test", URL::new);
+        createURL("http://localhost", URL::new);
 
         // Array Constructor reference
         createArray(12, YCombinator[]::new);
