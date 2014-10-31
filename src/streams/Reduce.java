@@ -1,6 +1,7 @@
 package streams;
 
-import static demo.ColorConsolePrinter.*;
+import static utils.AnsiTextColorizer.inGreen;
+import static utils.ColorConsolePrinter.*;
 import static java.util.Comparator.*;
 import static java.util.Objects.*;
 import static java.util.stream.Collectors.joining;
@@ -65,10 +66,10 @@ public class Reduce
     
     public static void main(String[] args)
     {
-        // Stream.min() demo
+        // Stream.min() utils
         intMin();
 
-        // Stream.max() demo
+        // Stream.max() utils
         maxWithComparator();
 
         percentileCollector();

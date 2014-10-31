@@ -1,6 +1,6 @@
 package streams;
 
-import static demo.ColorConsolePrinter.*;
+import static utils.ColorConsolePrinter.*;
 import static java.util.Arrays.*;
 import static java.util.stream.Collectors.*;
 

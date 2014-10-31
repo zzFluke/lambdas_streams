@@ -1,12 +1,32 @@
 package lambdas;
 
-import java.util.function.Function;
+import java.util.Comparator;
 
+public class FunctionalInterfaces
+{
+    public static void main(String[] args)
+    {
+        Comparator<String> comp = String.CASE_INSENSITIVE_ORDER;
+
+        // With Inner Class
+        StringCounter<String, Integer> counterInner = new StringCounter<String, Integer>() {
+            @Override
+            public Integer apply(String t) {
+                return t.length();
+            }
+        };
+
+
+        // With Lambda expression
+        StringCounter<String, Integer> counterLambda = str -> str.length();
+    }
+}
 
 @FunctionalInterface
-public interface FunctionalInterfaces<T, U>
+interface StringCounter<String, U extends Number>
 {
-    U apply(T t);
+    U apply(String t);
 
-//    void secondMethod();
+//    U apply2(String t);
+
 }

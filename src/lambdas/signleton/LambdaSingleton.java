@@ -5,25 +5,30 @@ import java.util.function.Supplier;
 
 public class LambdaSingleton
 {
-    private static Supplier<LambdaSingleton> instance = () -> createAndCacheSingleton();
+    private static Supplier<LambdaSingleton> accessor = () -> createAndCacheSingleton();
 
     public LambdaSingleton() {
-        System.out.println("Singleton Initialized");
+        System.out.println("Gettin' instance");
     }
 
     public static LambdaSingleton getInstance() {
-        return instance.get();
+        return accessor.get();
     }
 
-    // Body of synchronized supplier
+    // Synchronized supplier
     private static synchronized LambdaSingleton createAndCacheSingleton()
     {
         System.out.println("In Synchronized Supplier");
 
-        // Second non-synchronized(dummy) supplier
+        // Non-synchronized(dummy) supplier
         class DummySupplier implements Supplier<LambdaSingleton>
         {
-            private final LambdaSingleton instance = new LambdaSingleton();
+            private LambdaSingleton instance;
+
+            DummySupplier(LambdaSingleton instance)
+            {
+                this.instance = instance;
+            }
 
             public LambdaSingleton get()
             {
@@ -32,19 +37,19 @@ public class LambdaSingleton
             }
         }
 
-        if(!(instance instanceof DummySupplier))
+        if(accessor instanceof DummySupplier)
         {
-            instance = new DummySupplier();
+            return accessor.get();
         }
 
-        return instance.get();
+        LambdaSingleton instance = new LambdaSingleton();
+        accessor = new DummySupplier(instance);
+        return instance;
     }
 
     public static void main(String[] args) throws Exception
     {
         Class.forName(LambdaSingleton.class.getName());
-//        LambdaSingleton.getInstance();
-//        LambdaSingleton.getInstance();
+        LambdaSingleton.getInstance();
     }
-
 }

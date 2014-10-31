@@ -1,10 +1,12 @@
 package lambdas;
 
 
-import functional.YCombinator;
-
 import java.net.URL;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
+
+import static utils.ColorConsolePrinter.printTitle;
 
 public class MethodReference
 {
@@ -44,18 +46,19 @@ public class MethodReference
 
 
 //  3.  Instance method reference
-
     public static void main(String[] args) throws Exception
     {
         // Constructor reference
+        printTitle("Constructor reference");
         createURL("http://localhost", URL::new);
 
         // Array Constructor reference
-        createArray(12, YCombinator[]::new);
+        createArray(12, Object[]::new);
 
 
         // Static methods reference
         consumeStatic("100", Integer::valueOf);
+
     }
 
     interface ConstructorWithArgumentAndExceptions<T, U>

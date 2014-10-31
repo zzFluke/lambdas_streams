@@ -1,15 +1,14 @@
 package utils;
 
+import static utils.AnsiTextColorizer.inGreen;
+
 public class ColorConsolePrinter
 {
-    public static void printTitle(String message)
+    public static void printTitle(String title)
     {
-        System.out.println(String.format("\n########## %s ###########\n", inGreen(message)));
+        System.out.println(inGreen(String.format("\n########## %s ###########\n", title)));
     }
     
-    public static String inGreen(String str)
-    {
-        return String.format("\033[32m%s\033[0m", str);
-    };
-    
+
+
 }
